@@ -132,8 +132,8 @@ def main():
     print("=" * 60)
     
     # Only pause if running interactively (not when called from another script)
-    if sys.stdin.isatty():  # Check if running from terminal/double-click
-        input("\nPress Enter to exit...")
+    #if sys.stdin.isatty():  # Check if running from terminal/double-click
+    #    input("\nPress Enter to exit...")
     return 0
 
 if __name__ == "__main__":
