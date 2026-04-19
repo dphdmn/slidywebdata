@@ -3,6 +3,7 @@ import subprocess
 import shutil
 from datetime import datetime
 import time
+import sys
 
 def run_command(command, description, start_time=None):
     """Run a command and show real-time output with timing"""
@@ -130,8 +131,9 @@ def main():
     print(f"   Finished at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
-    # Pause at the end if running from double-click
-    input("\nPress Enter to exit...")
+    # Only pause if running interactively (not when called from another script)
+    if sys.stdin.isatty():  # Check if running from terminal/double-click
+        input("\nPress Enter to exit...")
     return 0
 
 if __name__ == "__main__":
