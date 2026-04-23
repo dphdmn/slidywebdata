@@ -186,8 +186,7 @@ def wait_for_table_load(expected_count=None, timeout=10):
             count, status = get_expected_row_count()
             
             if status == "fetching":
-                print(f"  Still loading... ({time.time()-start_time:.1f}s)")
-                time.sleep(0.3)
+                time.sleep(0.01)
                 continue
             
             # Check if table is present
@@ -256,9 +255,9 @@ def get_data(stat, device, is_fmc=False):
         driver.execute_script("arguments[0].click();", btn)
         
         # Wait for table to fully load with retry mechanism
-        max_retries = 1  # Reduced retries to avoid excessive delays
+        max_retries = 10
         for attempt in range(max_retries + 1):
-            if wait_for_table_load(timeout=8):
+            if wait_for_table_load(timeout=30):
                 break
             else:
                 if attempt < max_retries:
